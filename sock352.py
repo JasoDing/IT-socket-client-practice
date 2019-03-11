@@ -244,7 +244,7 @@ class socket:
 							self.sock.settimeout(None)
 					else:
 						print "Connection Failed. Due to Send()"
-                        sys.exit(1)
+						sys.exit(1)
         return bytessent
 
 
