@@ -175,7 +175,6 @@ class socket:
         print "Socket closed."
         self.sock.close()
 
-
     def send(self,buffer):
         bytessent = 0     # fill in your code here
         max_size = 64 * 1024
@@ -190,13 +189,13 @@ class socket:
         self.payload = to_sent
         while (remain_part > 0):									# when still things to send
             segment = buffer[bytessent : bytessent + to_sent] 		# get  segment
-			packet = struct.pack('!BBBBHHLLQQLL%ds' %(len(segment)),
+            packet = struct.pack('!BBBBHHLLQQLL%ds' %(len(segment)),
         	self.version, self.flags, self.opt_ptr, self.protocol, self.header_len,
         	self.checksum, self.source_port, self.dest_port,
        		self.sequence_no, self.ack_no, self.window, self.payload_len, segment)
-			self.sock.settimeout(0.2) 								# set time out to 0.2
-			i = 0
-			while i < 6:
+            self.sock.settimeout(0.2) 								# set time out to 0.2
+            i = 0
+            while i < 6:
 				index = 0
 				while index < 6:
 					try:
@@ -245,10 +244,8 @@ class socket:
 							self.sock.settimeout(None)
 					else:
 						print "Connection Failed. Due to Send()"
-						sys.exit(1)
-		return bytessent
-
-
+                        sys.exit(1)
+        return bytessent
 
 
     def recv(self,nbytes):
